@@ -41,7 +41,7 @@ export default function Certficates(){
 
     return(
         <div className="p-5 min-h-screen" id="skill">
-            <div className="text-2xl mt-10">[자격증 / 수료]</div><br/>
+            <div className="text-3xl">[자격증 / 수료]</div><br/>
             <div className="overflow-x-auto break-words">
             <table className="min-w-full table-auto border-collapse">
                 {/* 테이블 헤더 */}

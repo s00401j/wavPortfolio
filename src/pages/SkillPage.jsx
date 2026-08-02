@@ -7,7 +7,7 @@ import masterAudio from "../assets/masterAudio.wav";
 import Certficates from "./Certficates";
 
 export default function SkillPage(){
-    const dot = ['Pro Tools를 활용한 녹음 및 편집 가능합니다.', '요구 Loudness 준수 (LUFS, dBTP)', '숨소리/립노이즈 제거', '자연스러운 음성 연결', 'BGM, 효과음 추가', '파이널컷프로 활용 영상 편집도 가능합니다.']
+    const dot = ['Pro Tools를 활용한 녹음 및 편집 가능합니다.', '숨소리/립노이즈 제거', '자연스러운 음성 연결', 'EQ 등 효과 적용', 'BGM, 효과음 추가', '요구 Loudness 준수 (LUFS, dBTP)', '파이널컷프로 활용 영상 편집도 가능합니다.']
     const certificates = [
         {
             id: 1,
@@ -49,7 +49,7 @@ export default function SkillPage(){
 
     return(
         <div className="p-5 min-h-screen" id="skill">
-            <div className="text-3xl mb-10">[기술 스택]</div>
+            <div className="text-3xl mb-7">[기술 스택]</div>
             {/* <div className="text-2xl">[언어]</div> */}
             <ul className="font-normal">
             {dot.map((item, index) => (
