@@ -1,0 +1,151 @@
+import { useState } from "react";
+import { useEffect } from "react";
+import { Outlet, Link, useNavigate } from "react-router-dom";
+import ScrollToTop from "../components/ScrollToTop";
+
+function useShowWhenScrolled(threshold = 120) {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    let ticking = false;
+
+    const onScroll = () => {
+      const y = window.scrollY || document.documentElement.scrollTop;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setVisible(y > threshold);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    onScroll(); // 초기 상태 반영
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [threshold]);
+
+  return visible;
+}
+
+function ToTheTop() {
+  const visible = useShowWhenScrolled(120);
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  return (
+    <button
+      onClick={scrollToTop}
+      aria-label="맨 위로 이동"
+      className={`
+        cursor-pointer border-gray-200 border-2 rounded-full h-[35px] w-[35px] 
+        flex flex-col items-center justify-center
+        bg-indigo-600 hover:cursor-pointer text-gray-200 
+        transition-colors duration-200,
+        ${visible
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-3 pointer-events-none"
+        }`}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={2}
+        stroke="currentColor"
+        className="size-4"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="m4.5 15.75 7.5-7.5 7.5 7.5"
+        />
+      </svg>
+    </button>
+  );
+}
+
+const Menu=()=>{
+  const navi = useNavigate();
+  return(
+    <>
+    <button onClick={()=>navi("/")} className="hover:cursor-pointer hover:text-indigo-500">메인 화면</button>
+    <br/>
+    {/* <button onClick={()=>navi("/projectPage")} className="hover:cursor-pointer hover:text-indigo-500">프로젝트</button> 
+    <br/>
+    <button onClick={()=>navi("/skillPage")} className="hover:cursor-pointer hover:text-indigo-500">기술 스택</button>
+    <button onClick={()=>navi("/experience")} className="hover:cursor-pointer hover:text-indigo-500">관련 자격증</button>
+    <br/>*/}
+    <button onClick={()=>navi("/skillPage")} className="hover:cursor-pointer hover:text-indigo-500">기술 스택</button>
+    <br/>
+    <button onClick={()=>navi("/certificates")} className="hover:cursor-pointer hover:text-indigo-500">자격증/수료</button>
+    </>
+  );
+}
+
+function GlobalHeader() {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <header className="fixed inline-block bg-[#2B2B2B] w-full min-w-0 sm:max-w-[250px] sm:min-h-screen sm:ml-auto p-3 sm:text-right top-0 sm:mt-4 z-[1000]">
+      <div className="flex">
+        <div className="mx-auto">
+        <Link to="/" className="text-center text-[#F0F2F5] text-2xl mb-5"> Sujeong's Portfolio </Link> <br/>
+        <button className="text-gray-400 flex mx-auto sm:hidden text-sm">(s00401j@gmail.com)</button>
+        </div>
+
+        {/* 작은 브라우저 사이즈 드롭다운메뉴 */}
+        <div className={"sm:hidden relative inline-block right-0 transform -translate-x-1/6 mt-3 ml-3 pr-3"}>
+          <button
+          onClick={()=>setIsOpen(!isOpen)}
+          className="flex ml-auto p-2 rounded-md ring-2 ring-indigo-500 hover:ring-orange-400"
+          >
+          <div className="space-y-1">
+            <div className="w-6 h-0.5 bg-indigo-500"></div>
+            <div className="w-6 h-0.5 bg-indigo-500"></div>
+            <div className="w-6 h-0.5 bg-indigo-500"></div>
+          </div>
+          </button>
+          <div className={`absolute text-right right-0 p-1 pr-4 mt-1 w-30 ${isOpen?"border-b-1 border-indigo-500 bg-[#2B2B2B]":"border-none"}`}>{isOpen && (<Menu/>)}</div>
+        </div>
+      </div>
+      <div className="mt-7 hidden sm:block box-border text-right pt-1">
+          이수정 <br/>
+          s00401j@gmail.com
+      </div>
+      <div className="hidden sm:block box-border border-t-1 border-gray-400 mt-5 pt-1">
+        <br/>
+        <Menu/>
+      </div>
+    </header>
+  );
+}
+
+
+function GlobalFooter() {
+  return (
+    <footer className="p-4 flex justify-center border-t z-[1000]">
+        &copy; Sujeong's Portfolio (s00401j@gmail.com)
+    </footer>
+  );
+}
+
+export default function GlobalLayout() {
+  return (
+    <div className="flex flex-col box-border min-w-0 bg-[#2B2B2B] text-gray-200 pt-5 overflow-x-auto break-words">
+      <div className="grid grid-cols-1 sm:grid-cols-7 gap-5 justify-center">
+        <div className="col-span-1 sm:col-start-2">
+        <GlobalHeader/>
+        </div>
+        <main className="col-span-1 sm:col-span-5 sm:col-start-2 mr-auto p-1 mb-3 max-w-5xl mt-15 sm:mt-1 sm:ml-65 pl-0 sm:pl-5 sm:border-l-1 border-gray-400">
+            <ScrollToTop />
+            <Outlet />
+        </main>
+      </div>
+      <GlobalFooter />
+
+      <div className="fixed bottom-8 right-4 z-[1000] max-w-5xl">
+        <ToTheTop />
+      </div>
+    </div>
+  );
+}
