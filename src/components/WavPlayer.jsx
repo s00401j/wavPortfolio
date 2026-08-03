@@ -21,12 +21,12 @@ function WavPlayer() {
             <div className="flex justify-between items-center mb-2">
             <span className="text-md font-bold text-rose-400 uppercase">Before</span>
             </div>
-            <span className="ml-1 text-xs font-bold text-gray-200 uppercase">인물1 (여성 음성)</span>
+            <span className="ml-1 text-xs font-bold text-gray-200 uppercase">인물1 (여성 TTS 음성)</span>
             <audio controls src={womanAudio} className="w-full filter shadow-lg shadow-blue-500/5 mt-1" preload="auto" />
-            <div className="mt-2 flex justify-end text-xs text-slate-400 mb-3">Format: <span className="text-slate-200 font-medium">WAV (24bit 48kHz)</span></div>
-            <span className="ml-1 text-xs font-bold text-gray-200 uppercase">인물2 (남성 음성)</span>
+            {/* <div className="mt-2 flex justify-end text-xs text-slate-400 mb-3">Format: <span className="text-slate-200 font-medium">WAV (24bit 48kHz)</span></div> */}
+            <span className="ml-1 text-xs font-bold text-gray-200 uppercase">인물2 (남성 TTS 음성)</span>
             <audio controls src={manAudio} className="w-full filter shadow-lg shadow-blue-500/5 mt-1" preload="auto" />
-            <div className="mt-2 flex justify-end text-xs text-slate-400">Format: <span className="text-slate-200 font-medium">WAV (24bit 48kHz)</span></div>   
+            {/* <div className="mt-2 flex justify-end text-xs text-slate-400">Format: <span className="text-slate-200 font-medium">WAV (24bit 48kHz)</span></div> */}
         </div><br/>
 
         {/* 작업 후 샘플 */}
