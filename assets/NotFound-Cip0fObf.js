@@ -1,0 +1,1 @@
+import{t as e}from"./index-DgdEK6x_.js";var t=e();function n(){return(0,t.jsx)(t.Fragment,{children:(0,t.jsx)(`div`,{className:`mx-auto w-full max-w-[1200px] px-4`,children:(0,t.jsx)(`div`,{className:`flex justify-center p-10`,children:`존재하지 않는 페이지 입니다.`})})})}export{n as default};
