@@ -33,7 +33,7 @@ function WavPlayer() {
         <div className="bg-slate-900 p-4 rounded-xl border border-blue-900 bg-gradient-to-b from-slate-900 to-slate-850">
             <div className="flex justify-between items-center mb-2">
             <span className="text-md font-bold text-blue-400 uppercase">After (마스터링 완료)</span>
-            <span className="text-[11px] text-blue-400/70 font-medium">-15.8 LUFS / -1.4 dBTP / 2.2 LU</span>
+            <span className="text-[11px] text-blue-400/70 font-medium">-15.8 LUFS / -1.4 dBTP / 1.6 LU</span>
             </div>
             <div className="flex justify-center mt-2 mb-3"><img src={LUFS} className="w-45" /></div>
             <audio controls src={masterAudio} className="w-full filter shadow-lg shadow-blue-500/5" preload="auto" />
