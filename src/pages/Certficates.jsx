@@ -8,7 +8,7 @@ export default function Certficates(){
         },
         {
             id: 2,
-            title: "Dante Certification Level 1 (Audinate) 수료 (2026.07.20)",
+            title: "Dante Certification Level 1,2,3 (Audinate) 수료 (2026)",
             text: "단테 네트워크 오디오 전송 기술에 대한 이해와 Dante Controller를 활용한 오디오 라우팅 및 설정 능력을 갖추고 있습니다.",
         },
         {
